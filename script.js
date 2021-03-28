@@ -6,7 +6,7 @@ var specChars = [" ", "!", "#", "\"", "$", "%", "&", "\'", "(", ")", "*", "+", "
 var numberValues = [0123456789]; //will be using variable i to pick
 var upperCase = [ABCDEFGHIJKLMNOPQRSTUVWXYZ]; //will be using variable i?
 var lowerCase = [abcdefghijklmnopqrstuvwxyz];
-var passLength =  (8>= i && i =< 128);
+var passLength =  {8>= i && i =< 128} min= 8 max = 128;
 
 //Password length prompt. If the password lengths are less than 8 or more than 128, prompt message to pick valid option. This passLengthValue will have to be a numerical value that fits the limits of the characters
 passLength.prompt ("Please pick a the length of your password (8-128 characters)");
@@ -56,6 +56,16 @@ function writePassword = {
   passlength
 };
 
+// Write password to the #password input. This function carries is dependent on the variable 'password' that will provide the code found in generatePassword. The variable passwordText will then connect with the id password in the html and replace the value with the generated password which will result in the writePassword log. Write password is currently an undefined variable
+function writePassword() {
+  var password = generatePassword(specChars, numberValues, upperCase, lowerCase, passLength);
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+
+}
+
+// Add event listener to generate button. Once clicked will return the items in the writePassword log/fx
+generateBtn.addEventListener("click", writePassword);
 
 /*function{
 var passLength = {
@@ -87,9 +97,9 @@ function userInput () {
 
 //Prompts for user code guidelines. Include Return prompts and troubleshoot to make sure user cannot cancel or proceed without input 
 
-/* 
-❌ Organize in order of appearance
-❌Codes for all password special characters accepted. 
+/* TO DO LIST:
+✔️Organize in order of appearance
+✔️Variable for special characters (expanded). 
 ❌Include prompt if they want to include special characters
 
 
@@ -112,21 +122,5 @@ Maybe add copy button or message to state to copy using right-click or ctrl-c
 */
 
 
-//prompt()
-
 //in the end, all prompts must lead to function that will ultimately put everything together
 
-
-
-// Write password to the #password input. This function carries is dependent on the variable 'password' that will provide the code found in generatePassword. The variable passwordText will then connect with the id password in the html and replace the value with the generated password which will result in the writePassword log. Write password is currently an undefined variable
-function writePassword() {
-  var password = generatePassword();
-  //generatePassword = password.pr
-  var generatePassword = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz0123456789@#$'
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button. Once clicked will return the items in the writePassword log/fx
-generateBtn.addEventListener("click", writePassword);
